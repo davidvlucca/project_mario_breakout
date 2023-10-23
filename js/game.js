@@ -1,104 +1,197 @@
-class Game {
-    // code to be added
-    constructor (){
-        this.startScreen = document.getElementById("game-intro"); // We using document.getElementById (can also be document.querySelector()) to access and hold the div #game-intro
-        this.gameScreen = document.getElementById("game-screen"); // Holds the div element "game-screen"
-        this.gameEndScreen = document.getElementById("game-end"); // Holds the div element "game-end"
-        this.player = new Player(this.gameScreen,
-        200, // Left
-        500,
-        90,
-        150,
-        "./images/car.png");
-        this.height = 600; //The height of the game screen in pixels
-        this.width = 500; //The width of the game screen in pixels
-        this.obstacles=[];//An empty array. We'll use it to store the obstacle instances we create later
-        this.score = 0; //A score increases every time an obstacle is passed. Set its initial value to 0
-        this.lives = 3; //The number of remaining lives the player has. Set its initial value to 3
-        this.gameIsOver = false; //A flag used to track whether the game is over. Set the initial value to false
-        this.loadingObstacle = false;
+const grid = document.querySelector('.grid')
+const scoreDisplay = document.querySelector('#score')
+const blockWidth = 60
+const blockHeight = 60
+const ballDiameter = 25
+const boardWidth = 420
+const boardHeight = 600
+const userWidth = 100
+const userHeight = 20
+let xDirection = -5
+let yDirection = 5
+
+const userStart = [210, 10]
+let currentPosition = userStart
+
+const ballStart = [210, 80]
+let ballCurrentPosition = ballStart
+
+let timerId
+let score = 0
+
+//my block
+class Block {
+  constructor(xAxis, yAxis) {
+    this.bottomLeft = [xAxis, yAxis]
+    this.bottomRight = [xAxis + blockWidth, yAxis]
+    this.topRight = [xAxis + blockWidth, yAxis + blockHeight]
+    this.topLeft = [xAxis, yAxis + blockHeight]
+  }
+}
+
+//all my 24 blocks
+const blocks = [
+  new Block(360,540),
+  new Block(300, 540),
+  new Block(240, 540),
+  new Block(180, 540),
+  new Block(120, 540),
+  new Block(60, 540),
+  new Block(0, 540),
+  new Block(360,480),
+  new Block(300, 480),
+  new Block(240,480),
+  new Block(180,480),
+  new Block(120,480),
+  new Block(60,480),
+  new Block(0, 480),
+  new Block(360,420),
+  new Block(300,420 ),
+  new Block(240,420),
+  new Block(180,420),
+  new Block(120,420),
+  new Block(60,420),
+  new Block(0,420),
+  new Block(360,360),
+  new Block(300,360),
+  new Block(240,360),
+  new Block(180,360),
+  new Block(120,360),
+  new Block(60,360),
+  new Block(0, 360),
+
+]
+
+//draw my blocks
+function addBlocks() {
+  for (let i = 0; i < blocks.length; i++) {
+    const block = document.createElement('div')
+    block.classList.add('block')
+    block.style.left = blocks[i].bottomLeft[0] + 'px'  
+    block.style.bottom = blocks[i].bottomLeft[1] + 'px'  
+    grid.appendChild(block)
+    console.log(blocks[i].bottomLeft)
+  }
+}
+addBlocks()
+
+//add user
+const user = document.createElement('div')
+user.classList.add('user')
+grid.appendChild(user)
+drawUser()
+
+//add ball
+const ball = document.createElement('div')
+ball.classList.add('ball')
+grid.appendChild(ball)
+drawBall()
+
+//move user
+function moveUser(e) {
+  switch (e.key) {
+    case 'ArrowLeft':
+      if (currentPosition[0] > 0) {
+        currentPosition[0] -= 10
+        console.log(currentPosition[0] > 0)
+        drawUser()   
+      }
+      break
+    case 'ArrowRight':
+      if (currentPosition[0] < (boardWidth - userWidth)) {
+        currentPosition[0] += 10
+        console.log(currentPosition[0])
+        drawUser()   
+      }
+      break
+  }
+}
+document.addEventListener('keydown', moveUser)
+
+//draw User
+function drawUser() {
+  user.style.left = currentPosition[0] + 'px'
+  user.style.bottom = currentPosition[1] + 'px'
+}
+
+//draw Ball
+function drawBall() {
+  ball.style.left = ballCurrentPosition[0] + 'px'
+  ball.style.bottom = ballCurrentPosition[1] + 'px'
+}
+
+//move ball
+function moveBall() {
+    ballCurrentPosition[0] += xDirection
+    ballCurrentPosition[1] += yDirection
+    drawBall()
+    checkForCollisions()
+}
+timerId = setInterval(moveBall, 30)
+
+//check for collisions
+function checkForCollisions() {
+  //check for block collision
+  for (let i = 0; i < blocks.length; i++){
+    if
+    (
+      (ballCurrentPosition[0] > blocks[i].bottomLeft[0] && ballCurrentPosition[0] < blocks[i].bottomRight[0]) &&
+      ((ballCurrentPosition[1] + ballDiameter) > blocks[i].bottomLeft[1] && ballCurrentPosition[1] < blocks[i].topLeft[1]) 
+    )
+      {
+      const allBlocks = Array.from(document.querySelectorAll('.block'))
+      allBlocks[i].classList.remove('block')
+      blocks.splice(i,1)
+      changeDirection()   
+      score++
+      scoreDisplay.innerHTML = score
+      if (blocks.length == 0) {
+        scoreDisplay.innerHTML = 'You Win!'
+        clearInterval(timerId)
+        document.removeEventListener('keydown', moveUser)
+      }
     }
-    start(){
-        // Set the height and width of the game screen
-        this.gameScreen.style.height = `${this.height}px`;
-        this.gameScreen.style.width = `${this.width}px`;
+  }
+  // check for wall hits
+  if (ballCurrentPosition[0] >= (boardWidth - ballDiameter) || ballCurrentPosition[0] <= 0 || ballCurrentPosition[1] >= (boardHeight - ballDiameter))
+  {
+    changeDirection()
+  }
 
-        // Hide the start screen
-        this.startScreen.style.display = "none";
+  //check for user collision
+  if
+  (
+    (ballCurrentPosition[0] > currentPosition[0] && ballCurrentPosition[0] < currentPosition[0] + userWidth) &&
+    (ballCurrentPosition[1] > currentPosition[1] && ballCurrentPosition[1] < currentPosition[1] + userHeight)
+  )
+  {
+    changeDirection()
+  }
 
-        // Show the game screen
-        this.gameScreen.style.display = "block";
-
-        // Start the game loop
-        this.gameLoop();
-    }
-    gameLoop(){
-        // Runs the game loop by executing the following steps:
-        console.log("in the game loop");
-
-        // Interrupt the function to stop the loop if "gameIsOver" is set to "true"
-        if(this.gameIsOver) {
-            return;
-        }
-
-        // Update all objects on the game screen
-        // Invokes the update() method to update the game state. We will create a update method in the following iteration.
-        this.update();
-
-        // To ensure that the game loop function runs repeatedly, it should invoke itself (like this.gameLoop()), to create a recursive loop. To ensure a consistent frame rate, use window.requestAnimationFrame() to execute the function.
-       window.requestAnimationFrame(()=>this.gameLoop());
+  //game over
+  if (ballCurrentPosition[1] <= 0) {
+    clearInterval(timerId)
+    scoreDisplay.innerHTML = 'You lose!'
+    document.removeEventListener('keydown', moveUser)
+  }
+}
 
 
-    }
-    update(){
-
-        this.player.move();
-
-        for (let i = 0; i < this.obstacles.length; i++){
-            const obstacle = this.obstacles[i];
-            obstacle.move();
-
-            // Check for collision
-            if (this.player.didCollide(obstacle)){
-                obstacle.element.remove();
-                this.obstacles.splice(i,1);
-                this.lives --;
-            }
-            else if (obstacle.top > this.height){
-                this.score ++;
-                obstacle.element.remove();
-                this.obstacles.splice(i,1);
-            }
-        }
-
-        if (this.lives === 0){
-            this.endGame();
-        }
-
-        if (!this.obstacles.length && !this.loadingObstacle){
-            this.loadingObstacle = true;
-            setTimeout(() => {
-                this.obstacles.push(new Obstacle(this.gameScreen));
-                this.loadingObstacle = false;
-            }, 500);
-        }
-        // This method is responsible for updating the game state during each loop iteration. For now, we will leave it empty and come back to implement it in the upcoming iterations.
-        console.log("in the update");
-
-          let score = document.getElementById("score");
-        let lives = document.getElementById("lives");
-
-        score.innerHTML = this.score;
-        lives.innerHTML = this.lives;
-    }
-
-    endGame(){
-        this.gameIsOver = true;
-        this.player.element.remove();
-        this.obstacles.forEach(obstacle=>{
-            obstacle.element.remove();
-            });
-        this.gameScreen.style.display = "none";
-        this.gameEndScreen.style.display = "block";
-    }
+function changeDirection() {
+  if (xDirection === 5 && yDirection === 5) {
+    yDirection = -5
+    return
+  }
+  if (xDirection === 5 && yDirection === -5) {
+    xDirection = -5
+    return
+  }
+  if (xDirection === -5 && yDirection === -5) {
+    yDirection = 5
+    return
+  }
+  if (xDirection === -5 && yDirection === 5) {
+    xDirection = 5
+    return
+  }
 }
