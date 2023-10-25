@@ -1,33 +1,93 @@
-.grid {
-  position: absolute;
-  width: 420px;
-  height: 600px;
-  border: solid 1px black;
-  margin-top: 100px;
-}
-
-.user {
-  position: absolute;
-  width: 100px;
-  height: 20px;
-  background-color: blueviolet;
-  border: solid 1px black;
-}
-
-.block {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background-image:url(Images/transferir\ \(1\).jpg) ;
+body {
+  padding: 0;
+  text-align: center;
+  background-image: url("/images/mario_background.png");
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
-.ball {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  background-color: red;
-  border: solid 1px black;
+#game-intro {
+  padding: 20px 0px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+#game-play{
+  margin-top: 20px;
+  margin-left: 250px;
+  margin-right: 250px;
+  display: flex;
+  justify-content:space-around;
+}
+
+#game-container {
+  display: flex;
+  width: 100vw;
+  padding: 20px 0px;
+  justify-content: center;
+}
+
+#game-screen {
+  display: none;
+  align-content: center;
+  /* padding: 20px 0px;*/
+  overflow: hidden;
+  position: relative;
+  background-image: url("/images/clouds_background.jpg");
+  background-size: cover;
+  animation: slide 15s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    background-position: -1000px 0 ;
+  }
+  100% {
+    background-position: 0 0 ;
+  }
+}
+
+#game-end {
+  display: none;
+}
+
+.game-intro p {
+  font-size: 18px;
+  font-family: "Verdana";
+}
+
+#start-button{
+  width: auto;
+  height: 100px;
+}
+
+#restart-button{
+  margin-top: 50px;
+  width: auto;
+  height: 100px;
+}
+.logo-img {
+  width: auto;
+  height: 400px;
+}
+#gameover-img{
+  margin-top: 50px;
+  width: auto;
+  height: 200px;
+}
+
+.arrow-img {
+  width: auto;
+  height: 100px;
+}
+
+body button {
+  font-size: 30px;
+  background-color: #870007;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
