@@ -1,6 +1,7 @@
 window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
+  const nextLevel = document.getElementById("next-level")
   let game; // added
 
   startButton.addEventListener("click", function () {
@@ -10,10 +11,16 @@ window.onload = function () {
   restartButton.addEventListener("click", function () {
     restartGame();
   })
+  nextLevel.addEventListener("click", function () {
+    goNextLevel();
+  })
   function restartGame() {
     location.reload();
   }
-
+  function goNextLevel() {
+    game = new Game();
+    game.start();
+  }
   function startGame() {
     // When the Start Game button is clicked, inside the startGame function we should create a new instance of the Game class and start the game by invoking the start() method
     game = new Game();
@@ -37,7 +44,7 @@ window.onload = function () {
             case 'ArrowLeft':
             game.player.directionX = -3;break;
             case 'ArrowRight':
-            game.player.directionX = 3;break;  
+            game.player.directionX = 3;break;
           }
         }
       }
@@ -47,7 +54,7 @@ function handleKeyup(event) {
     const key = event.key
 
     const possibleKeys = [
-      "ArrowLeft", 
+      "ArrowLeft",
       "ArrowRight",
     ]
 
@@ -58,10 +65,10 @@ function handleKeyup(event) {
           switch(key){
             case 'ArrowLeft':
             game.player.directionX = 0;break;
-            
+
             case 'ArrowRight':
             game.player.directionX = 0;break;
-           
+
           }
         }
       }

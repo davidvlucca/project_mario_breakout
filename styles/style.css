@@ -51,6 +51,10 @@ body {
   display: none;
 }
 
+#you-win{
+  display: none;
+}
+
 .game-intro p {
   font-size: 18px;
   font-family: "Verdana";
@@ -62,6 +66,12 @@ body {
 }
 
 #restart-button{
+  margin-top: 50px;
+  width: auto;
+  height: 100px;
+}
+
+#next-level {
   margin-top: 50px;
   width: auto;
   height: 100px;

@@ -40,6 +40,6 @@ class Player {
     // Update CSS
     this.element.style.left = `${this.left}px`;
   }
-  
+
 
 }

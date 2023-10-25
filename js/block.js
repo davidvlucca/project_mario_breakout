@@ -9,7 +9,7 @@ class Block {
     this.topLeft = [xAxis, yAxis + this.blockHeight]
 
     this.element = document.createElement("img");
-    this.element.src = "./images/mario_block2.gif";
+    this.element.src = "/images/mario-block2.gif";
     this.element.style.position = "absolute";
     this.element.style.width = `${this.blockWidth}px`;
     this.element.style.height = `${this.blockHeight}px`;

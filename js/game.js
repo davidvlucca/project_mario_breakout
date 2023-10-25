@@ -10,7 +10,7 @@ class Game {
         10,
         100,
         20,
-        "./images/car.png");
+        "./images/cano.png");
         this.ball = new Ball(this.gameScreen,
         210, // Left
         80,
@@ -111,7 +111,7 @@ class Game {
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "block";
     }
-    youWinScreen    (){
+    youWinScreen(){
         this.gameIsOver = true;
         this.player.element.remove();
         this.ball.element.remove();
