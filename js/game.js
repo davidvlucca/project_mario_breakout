@@ -27,7 +27,7 @@ class Game {
         this.gameIsOver = false; //A flag used to track whether the game is over. Set the initial value to false
         this.loadingObstacle = false;
         this.blocks = [] ;
-
+          
     }
 
     start(){
@@ -41,6 +41,8 @@ class Game {
         this.gameScreen.style.display = "block";
         this.scoreDiv.style.display = "block";
         this.marioDiv.style.display = "block";
+        let myAudio = document.querySelector('#audio')
+        myAudio.play();
 
         // Start the game loop
         this.gameLoop();
@@ -94,6 +96,7 @@ class Game {
         }
         if (this.blocks.length === 0) {
             this.youWinScreen();
+            
         }
         if(this.ball.didCollidePlayerWalls(this.player)){
             this.endGame();
@@ -117,6 +120,8 @@ class Game {
         this.gameEndScreen.style.display = "block";
         this.scoreDiv.style.display = "none";
         this.marioDiv.style.display = "none";
+        
+        
     }
     youWinScreen(){
         localStorage.setItem('score', this.score);
@@ -131,5 +136,6 @@ class Game {
         this.scoreDiv.style.display = "none";
         this.marioDiv.style.display = "none";
         this.youWin.style.display = "block";
+        
     }
 }
