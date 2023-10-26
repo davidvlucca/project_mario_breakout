@@ -118,7 +118,7 @@ class Game {
             });
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "block";
-        this.scoreDiv.style.display = "none";
+        this.scoreDiv.style.display = "block";
         this.marioDiv.style.display = "none";
 
         let myAudio = document.querySelector('#audio');
@@ -136,7 +136,7 @@ class Game {
             });
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "none";
-        this.scoreDiv.style.display = "none";
+        this.scoreDiv.style.display = "block";
         this.marioDiv.style.display = "none";
         this.youWin.style.display = "block";
 

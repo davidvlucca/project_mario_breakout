@@ -41,7 +41,6 @@ body {
 #game-container {
   display: none;
   display: flex;
-  width: 100vw;
   padding: 20px 0px;
   justify-content: space-evenly;
   align-items: center;
