@@ -24,6 +24,7 @@ window.onload = function () {
   function goNextLevel() {
     const previousScore = parseInt(localStorage.getItem('score'));
     game = new Game();
+    game.score = previousScore; // Set the score to the previous score retrieved from localStorage
     game.start();
     this.youWin = document.getElementById("you-win");
     this.youWin.style.display = "none";
