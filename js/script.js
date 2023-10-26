@@ -22,6 +22,7 @@ window.onload = function () {
     location.reload();
   }
   function goNextLevel() {
+    const previousScore = parseInt(localStorage.getItem('score'));
     game = new Game();
     game.start();
     this.youWin = document.getElementById("you-win");

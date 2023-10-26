@@ -119,6 +119,7 @@ class Game {
         this.marioDiv.style.display = "none";
     }
     youWinScreen(){
+        localStorage.setItem('score', this.score);
         this.gameIsOver = true;
         this.player.element.remove();
         this.ball.element.remove();
