@@ -21,24 +21,28 @@
 
       <div id="game-container">
       <div id="score-div">
-        <h2></h2>
-        <p>Score: <span id="score">0</span></p>
+        <h3>POINTS: <span id="score">0</span></h3>
       </div>
         <!-- #game-screen is initially hidden using CSS style display: none -->
         <div id="game-screen"></div>
+        <div id="mario-gif">
+          <img src="./images/mario_running.gif" alt="" id="mario-running">
+        </div>
       </div>
 
       <!-- #game-end is initially hidden using CSS style display: none -->
       <div id="game-end">
         <img src="./images/gameover.png" alt="" id="gameover-img" />
         <br />
-        <img src="./images/restart.png" alt="" id="restart-button">
+        <img src="./images/restart.png" alt="" id="restart-button-lose">
       </div>
       <div id="you-win">
         <img src="./images/youwin.png" alt="" id="gameover-img" />
         <br />
-        <img src="./images/nextlevel.png" alt="" id="next-level">
-        <img src="./images/restart.png" alt="" id="restart-button">
+        <div id="you-win-buttons">
+          <img src="./images/nextlevel.png" alt="" id="next-level">
+          <img src="./images/restart.png" alt="" id="restart-button-win">
+        </div>
       </div>
     </main>
 

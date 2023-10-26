@@ -20,11 +20,31 @@ body {
   justify-content:space-around;
 }
 
+#mario-gif {
+    display: none;
+}
+
+#mario-gif img{
+  width: auto;
+  height: 150px;
+}
+
+
+#you-win-buttons {
+    margin-left: 300px;
+    margin-right: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
 #game-container {
+  display: none;
   display: flex;
   width: 100vw;
   padding: 20px 0px;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #game-screen {
@@ -55,6 +75,17 @@ body {
   display: none;
 }
 
+#score-div {
+  display: none;
+}
+
+#score-div h3{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  color:#CE0204;
+}
+
 .game-intro p {
   font-size: 18px;
   font-family: "Verdana";
@@ -65,7 +96,12 @@ body {
   height: 100px;
 }
 
-#restart-button{
+#restart-button-win{
+  margin-top: 50px;
+  width: auto;
+  height: 100px;
+}
+#restart-button-lose {
   margin-top: 50px;
   width: auto;
   height: 100px;

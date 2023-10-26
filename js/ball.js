@@ -11,7 +11,7 @@ class Ball {
     this.element = document.createElement("img");
     this.element.src = imgSrc;
     this.element.style.position = "absolute";
-    this.ballDiameter=20
+    this.ballDiameter= 20
     //Set up some default values
     this.element.style.width = `${width}px`;
     this.element.style.height = `${height}px`;
@@ -29,7 +29,7 @@ class Ball {
       ballRect.left < blockRect.right &&
       ballRect.right > blockRect.left &&
       ballRect.top < blockRect.bottom &&
-      ballRect.bottom>  blockRect.top
+      ballRect.bottom >  blockRect.top
     ){
       this.changeDirectionBoxes()
       return true;
@@ -44,7 +44,7 @@ class Ball {
       ballRect.left < playerRect.right &&
       ballRect.right > playerRect.left &&
       ballRect.top < playerRect.bottom &&
-      ballRect.bottom>  playerRect.top
+      ballRect.bottom >  playerRect.top
     ){
       this.changeDirectionPlayer()
       return false;

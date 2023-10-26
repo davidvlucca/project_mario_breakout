@@ -5,6 +5,8 @@ class Game {
         this.gameScreen = document.getElementById("game-screen"); // Holds the div element "game-screen"
         this.gameEndScreen = document.getElementById("game-end"); // Holds the div element "game-end"
         this.youWin = document.getElementById("you-win");
+        this.scoreDiv = document.getElementById("score-div");
+        this.marioDiv = document.getElementById("mario-gif");
         this.player = new Player(this.gameScreen,
         210, // Left
         10,
@@ -37,6 +39,9 @@ class Game {
         this.startScreen.style.display = "none";
         // Show the game screen
         this.gameScreen.style.display = "block";
+        this.scoreDiv.style.display = "block";
+        this.marioDiv.style.display = "block";
+
         // Start the game loop
         this.gameLoop();
     }
@@ -110,6 +115,8 @@ class Game {
             });
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "block";
+        this.scoreDiv.style.display = "none";
+        this.marioDiv.style.display = "none";
     }
     youWinScreen(){
         this.gameIsOver = true;
@@ -120,6 +127,8 @@ class Game {
             });
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "none";
+        this.scoreDiv.style.display = "none";
+        this.marioDiv.style.display = "none";
         this.youWin.style.display = "block";
     }
 }

@@ -1,6 +1,7 @@
 window.onload = function () {
   const startButton = document.getElementById("start-button");
-  const restartButton = document.getElementById("restart-button");
+  const restartButtonLose = document.getElementById("restart-button-lose");
+  const restartButtonWin = document.getElementById("restart-button-win");
   const nextLevel = document.getElementById("next-level")
   let game; // added
 
@@ -8,7 +9,10 @@ window.onload = function () {
     startGame();
   });
 
-  restartButton.addEventListener("click", function () {
+  restartButtonLose.addEventListener("click", function () {
+    restartGame();
+  })
+  restartButtonWin.addEventListener("click", function () {
     restartGame();
   })
   nextLevel.addEventListener("click", function () {
@@ -20,6 +24,8 @@ window.onload = function () {
   function goNextLevel() {
     game = new Game();
     game.start();
+    this.youWin = document.getElementById("you-win");
+    this.youWin.style.display = "none";
   }
   function startGame() {
     // When the Start Game button is clicked, inside the startGame function we should create a new instance of the Game class and start the game by invoking the start() method
