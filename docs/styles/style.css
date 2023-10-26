@@ -1,7 +1,7 @@
 body {
   padding: 0;
   text-align: center;
-  background-image: url(./images/mario_background.png);
+  background-image: url("https://i.ibb.co/vZLZ40J/mario-background.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -41,6 +41,7 @@ body {
 #game-container {
   display: none;
   display: flex;
+  width: 100vw;
   padding: 20px 0px;
   justify-content: space-evenly;
   align-items: center;
@@ -52,7 +53,7 @@ body {
   /* padding: 20px 0px;*/
   overflow: hidden;
   position: relative;
-  background-image: url(./images/clouds_background.jpg);
+  background-image: url("/images/clouds_background.jpg");
   background-size: cover;
   animation: slide 15s linear infinite;
 }
