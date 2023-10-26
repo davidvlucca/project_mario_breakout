@@ -1,7 +1,7 @@
 body {
   padding: 0;
   text-align: center;
-  background-image: url("./docs/images/mario_background.png");
+  background-image: url("./images/mario_background.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
