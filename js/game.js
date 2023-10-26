@@ -120,6 +120,9 @@ class Game {
         this.gameEndScreen.style.display = "block";
         this.scoreDiv.style.display = "none";
         this.marioDiv.style.display = "none";
+
+        let myAudio = document.querySelector('#audio');
+        myAudio.pause();
         
         
     }
@@ -136,6 +139,9 @@ class Game {
         this.scoreDiv.style.display = "none";
         this.marioDiv.style.display = "none";
         this.youWin.style.display = "block";
+
+        let myAudio = document.querySelector('#audio');
+        myAudio.pause();
         
     }
 }
