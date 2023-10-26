@@ -12,13 +12,13 @@ class Game {
         10,
         100,
         20,
-        "./images/cano.png");
+        "./docs/images/cano.png");
         this.ball = new Ball(this.gameScreen,
         210, // Left
         80,
         20,
         20,
-        "./images/ball.png");
+        "./docs/images/ball.png");
         this.height = 560; //The height of the game screen in pixels
         this.width = 360; //The width of the game screen in pixels
         this.blocks=[];//An empty array. We'll use it to store the obstacle instances we create later
@@ -27,7 +27,7 @@ class Game {
         this.gameIsOver = false; //A flag used to track whether the game is over. Set the initial value to false
         this.loadingObstacle = false;
         this.blocks = [] ;
-          
+
     }
 
     start(){
@@ -96,7 +96,7 @@ class Game {
         }
         if (this.blocks.length === 0) {
             this.youWinScreen();
-            
+
         }
         if(this.ball.didCollidePlayerWalls(this.player)){
             this.endGame();
@@ -123,8 +123,8 @@ class Game {
 
         let myAudio = document.querySelector('#audio');
         myAudio.pause();
-        
-        
+
+
     }
     youWinScreen(){
         localStorage.setItem('score', this.score);
@@ -142,6 +142,6 @@ class Game {
 
         let myAudio = document.querySelector('#audio');
         myAudio.pause();
-        
+
     }
 }
