@@ -6,7 +6,7 @@ class Ball {
   this.width = width;
   this.height = height;
   this.imgSrc = imgSrc;
-  this.speed = 1;
+  this.speed = 3;
   this.directionX = -this.speed;
   this.directionY = this.speed;
   this.element = document.createElement("img");
